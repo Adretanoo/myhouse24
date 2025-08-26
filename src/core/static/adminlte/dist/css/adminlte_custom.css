@@ -8,15 +8,23 @@ body.loaded {
     transition: visibility 0s, opacity 0.3s ease;
     opacity: 1;
 }
+
+label {
+    cursor: pointer;
+}
+
 hr {
     margin: 0;
 }
+
 .content-header {
-  padding: .7rem 1rem !important;
+    padding: .7rem 1rem !important;
 }
+
 .content-header h1 {
-  font-size: 1.5rem;
+    font-size: 1.5rem;
 }
+
 a {
     text-decoration: none;
     color: black;
@@ -60,7 +68,7 @@ a:hover {
 }
 
 .main-header {
-    margin: auto 0 ;
+    margin: auto 0;
     padding: 0;
 }
 

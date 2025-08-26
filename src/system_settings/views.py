@@ -1,8 +1,16 @@
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView
-
-from src.system_settings.forms import PaymentDetailsForm
-from src.system_settings.models import PaymentDetailsSettings
+from django.views.generic import UpdateView, TemplateView
+from src.system_settings.forms import (
+    PaymentDetailsForm,
+    ServiceSettingsFormSet,
+    UnitsMeasurementFormSet,
+)
+from src.system_settings.models import (
+    PaymentDetailsSettings,
+    UnitsMeasurement,
+    ServiceSettings,
+)
 
 
 class PaymentDetailsView(UpdateView):
@@ -12,3 +20,33 @@ class PaymentDetailsView(UpdateView):
 
     def get_object(self, queryset=None):
         return PaymentDetailsSettings.objects.first()
+
+
+class ServiceSettingsView(TemplateView):
+    template_name = "system_settings/service_settings.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["service_settings"] = ServiceSettingsFormSet(
+            queryset=ServiceSettings.objects.all(),
+            prefix="service_settings",
+        )
+        context["units_measurement"] = UnitsMeasurementFormSet(
+            queryset=UnitsMeasurement.objects.all(),
+            prefix="units_measurement",
+        )
+        return context
+
+    def post(self, request, *args, **kwargs):
+        service_settings = ServiceSettingsFormSet(
+            request.POST, prefix="service_settings"
+        )
+        units_measurement = UnitsMeasurementFormSet(
+            request.POST, prefix="units_measurement"
+        )
+
+        if service_settings.is_valid() and units_measurement.is_valid():
+            service_settings.save()
+            units_measurement.save()
+
+        return redirect("service_settings")

@@ -108,8 +108,8 @@
             </p>
         </a>
         <ul class="nav nav-treeview">
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {% link_active 'service_settings' %}">
+                <a href="{% url 'service_settings' %}" class="nav-link">
                     <p>Услуги</p>
                 </a>
             </li>
@@ -128,7 +128,7 @@
                     <p>Пользователи</p>
                 </a>
             </li>
-            <li class="nav-item {% link_active %}">
+            <li class="nav-item {% link_active 'payment_details' %}">
                 <a href="{% url 'payment_details' %}" class="nav-link">
                     <p>Платежные реквизиты</p>
                 </a>

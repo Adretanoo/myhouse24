@@ -25,9 +25,7 @@
     justify-content: end;
     gap: .5rem;
 }
-label {
-    cursor: pointer;
-}
+
 @media  (max-width: 250px) {
     .form-group-buttons {
         display: block;

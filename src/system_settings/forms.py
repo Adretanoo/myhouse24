@@ -1,6 +1,11 @@
 from django.forms import ModelForm
-from django.forms.widgets import TextInput, Textarea
-from src.system_settings.models import PaymentDetailsSettings
+from django.forms.models import modelformset_factory
+from django.forms.widgets import TextInput, Textarea, Select
+from src.system_settings.models import (
+    PaymentDetailsSettings,
+    UnitsMeasurement,
+    ServiceSettings,
+)
 
 
 class PaymentDetailsForm(ModelForm):
@@ -24,3 +29,46 @@ class PaymentDetailsForm(ModelForm):
             ),
         }
         labels = {"title": "Название компании", "information": "Информация"}
+
+
+class UnitsMeasurementForm(ModelForm):
+    class Meta:
+        model = UnitsMeasurement
+        fields = ["title"]
+        widgets = {
+            "title": TextInput(attrs={"class": "form-control", "required": "true"})
+        }
+        labels = {"title": "Ед. изм."}
+
+
+class ServiceSettingsForm(ModelForm):
+    class Meta:
+        model = ServiceSettings
+        fields = ["title", "units_measurement", "is_counters"]
+        widgets = {
+            "title": TextInput(attrs={"class": "form-control", "required": "true"}),
+            "units_measurement": Select(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+        }
+        labels = {
+            "title": "Услуга",
+            "is_counters": "Показывать в счетчиках",
+            "units_measurement": "Ед. изм.",
+        }
+
+
+UnitsMeasurementFormSet = modelformset_factory(
+    UnitsMeasurement,
+    form=UnitsMeasurementForm,
+    extra=0,
+    can_delete=True,
+)
+ServiceSettingsFormSet = modelformset_factory(
+    ServiceSettings,
+    form=ServiceSettingsForm,
+    extra=0,
+    can_delete=True,
+)

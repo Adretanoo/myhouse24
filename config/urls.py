@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path("adminlte/", include("src.services.urls")),
-    path("adminlte/", include("src.system_settings.urls")),
+    path("adminlte/system-settings/", include("src.system_settings.urls")),
 ]

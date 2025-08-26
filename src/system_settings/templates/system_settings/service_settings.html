@@ -1,0 +1,180 @@
+{% extends "base_adminlte.html" %}
+{% load static %}
+{% block head %}
+    <title>Редактирование услуг</title>
+    <meta name="description" content="Редактирование услуг">
+    <meta name="keywords" content="Редактирование услуг">
+    <link rel="stylesheet"
+          href="{% static 'adminlte/dist/css/service-settings.css' %}">
+{% endblock head %}
+{% block title %}
+    <h1>Редактирование услуг</h1>
+{% endblock title %}
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+{% block content %}
+    <div class="box">
+        <div class="box-body">
+            <form id="w0" action="{% url 'service_settings' %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-xs-12 col-lg-7">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item active" role="presentation">
+                                    <a href="#tab_service" data-toggle="tab" aria-expanded="true">Услуги</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a href="#tab_serviceunit" data-toggle="tab" aria-expanded="false">Единицы
+                                    измерения</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab_service" class="tab-pane clearfix active">
+                                    {{ service_settings.management_form }}
+                                    <div class="form-service-rows">
+                                        {% for service in service_settings %}
+                                            <div id="form-service-{{ forloop.counter0 }}" class="row form-service">
+                                                {{ service.id }}
+                                                <div class="col-xs-12 col-sm-7">
+                                                    <div class="form-group">
+                                                        <label for="{{ service.title.id_for_label }}">{{ service.title.label }}</label>
+                                                        {{ service.title }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-5">
+                                                    <div class="form-group">
+                                                        <label for="{{ service.units_measurement.id_for_label }}">{{ service.units_measurement.label }}</label>
+                                                        <div class="input-group">
+                                                            {{ service.units_measurement }}
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="btn btn-default form-row-remove-btn">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                                <span class="block-delete-formset">
+                                                                    {% if service.DELETE %}{{ service.DELETE }}{% endif %}
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-5">
+                                                    {{ service.is_counters }}
+                                                    <label for="{{ service.is_counters.id_for_label }}">{{ service.is_counters.label }}</label>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <button type="button"
+                                            class="btn btn-default btn-hover-change pull-left form-row-add-service-btn">
+                                        Добавить
+                                    </button>
+                                </div>
+                                <div id="tab_serviceunit" class="tab-pane clearfix">
+                                    {{ units_measurement.management_form }}
+                                    <div class="form-serviceunit-rows">
+                                        {% for unit in units_measurement %}
+                                            {{ unit.id }}
+                                            <div id="form-serviceunit-{{ forloop.counter0 }}"
+                                                 class="row form-serviceunit">
+                                                <div class="col-xs-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label for="{{ unit.for_id_label }}">{{ unit.title.label }}</label>
+                                                        <div class="input-group">
+                                                            {{ unit.title }}
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="btn btn-default form-row-remove-btn">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                                <span class="block-delete-formset">
+                                                                    {% if unit.DELETE %}{{ unit.DELETE }}{% endif %}
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <button type="button"
+                                            class="btn btn-default btn-hover-change pull-left form-row-add-serviceunit-btn">
+                                        Добавить
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-lg-12 text-center">
+                        <div class="form-group form-group-buttons">
+                            <a href="{% url 'service_settings' %}" class="btn btn-default">Отменить</a>
+                            <button type="submit" class="btn btn-success">Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- прихований шаблон -->
+    <div id="empty-form">
+        <div id="form-service-__prefix__" class="row form-service">
+            <div class="col-xs-12 col-sm-7">
+                <div class="form-group">
+                    <label for="{{ service_settings.empty_form.title.id_for_label }}">{{ service_settings.empty_form.title.label }}</label>
+                    {{ service_settings.empty_form.title }}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-5">
+                <div class="form-group">
+                    <label for="{{ service_settings.empty_form.units_measurement.id_for_label }}">
+                        {{ service_settings.empty_form.units_measurement.label }}
+                    </label>
+                    <div class="input-group">
+                        {{ service_settings.empty_form.units_measurement }}
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default form-row-remove-btn">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                            <span class="block-delete-formset">
+                                {% if service_settings.empty_form.DELETE %}{{ service_settings.empty_form.DELETE }}{% endif %}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-5">
+                {{ service_settings.empty_form.is_counters }}
+                <label for="{{ service_settings.empty_form.is_counters.id_for_label }}">
+                    {{ service_settings.empty_form.is_counters.label }}
+                </label>
+            </div>
+        </div>
+    </div>
+    <!-- Прихований formset serviceunit -->
+    <div id="empty_form_serviceunit">
+        <div id="form-serviceunit-__prefix__" class="row form-serviceunit">
+            <div class="col-xs-12 col-sm-12">
+                <div class="form-group">
+                    <label for="{{ units_measurement.empty_form.for_id_label }}">{{ units_measurement.empty_form.title.label }}</label>
+                    <div class="input-group">
+                        {{ units_measurement.empty_form.title }}
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default form-row-remove-btn">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                            <span class="block-delete-formset">
+                                {% if units_measurement.empty_form.DELETE %}{{ units_measurement.empty_form.DELETE }}{% endif %}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{% static 'adminlte/dist/js/service_settings.js' %}" defer></script>
+{% endblock scripts %}

@@ -20,12 +20,16 @@ class UnitsMeasurement(models.Model):
     class Meta:
         db_table = "units_measurement"
 
+    def __str__(self):
+        return self.title
+
 
 class ServiceSettings(models.Model):
     title = models.CharField(max_length=255)
     units_measurement = models.ForeignKey(
         UnitsMeasurement, on_delete=models.CASCADE, default=JobTitle.MANAGER
     )
+    is_counters = models.BooleanField(default=False)
 
     class Meta:
         db_table = "service_settings"
