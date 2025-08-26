@@ -81,8 +81,8 @@
     position: relative;
     display: block;
 }
-.empty-form, .empty_form_serviceunit {
-    display: none;
+#empty-form, #empty_form_serviceunit {
+    display: none !important;
 }
 .nav-tabs-custom > .tab-content {
     background: #fff;
