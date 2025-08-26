@@ -1,6 +1,6 @@
 from django.urls import path
 from src.services import views
 
-urlpatterns = {
+urlpatterns = [
     path("", views.statistics, name="statistics"),
-}
+]

@@ -1,9 +1,10 @@
+{% load drop_menu %}
 <ul class="nav nav-pills nav-sidebar flex-column"
     data-widget="treeview"
     role="menu"
     data-accordion="true">
     <li class="nav-item">
-        <a href="#" class="nav-link active-custom">
+        <a href="#" class="nav-link">
             <i class="nav-icon bi bi-bar-chart"></i>
             <p>Статистика</p>
         </a>
@@ -62,7 +63,7 @@
             <p>Показания счетчиков</p>
         </a>
     </li>
-    <li class="nav-item ">
+    <li class="nav-item">
         <a href="#" class="nav-link">
             <i class="nav-icon bi bi-display"></i>
             <p class="block-text">
@@ -98,7 +99,7 @@
             </li>
         </ul>
     </li>
-    <li class="nav-item">
+    <li class="nav-item {% menu_active %}">
         <a href="#" class="nav-link ">
             <i class="nav-icon bi bi-gear"></i>
             <p class="block-text">
@@ -127,8 +128,8 @@
                     <p>Пользователи</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {% link_active %}">
+                <a href="{% url 'payment_details' %}" class="nav-link">
                     <p>Платежные реквизиты</p>
                 </a>
             </li>

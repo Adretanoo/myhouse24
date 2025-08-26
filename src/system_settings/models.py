@@ -17,6 +17,9 @@ class JobTitle(models.TextChoices):
 class UnitsMeasurement(models.Model):
     title = models.CharField(max_length=30)
 
+    class Meta:
+        db_table = "units_measurement"
+
 
 class ServiceSettings(models.Model):
     title = models.CharField(max_length=255)
@@ -24,23 +27,35 @@ class ServiceSettings(models.Model):
         UnitsMeasurement, on_delete=models.CASCADE, default=JobTitle.MANAGER
     )
 
+    class Meta:
+        db_table = "service_settings"
+
 
 class TariffsSettings(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     edit_date = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = "tariffs_settings"
+
 
 class PaymentDetailsSettings(models.Model):
     title = models.CharField(max_length=255)
     information = models.TextField()
 
+    class Meta:
+        db_table = "payment_details_settings"
 
-class PaymentDetailSettings(models.Model):
+
+class PaymentItemsSettings(models.Model):
     title = models.CharField(max_length=255)
     translation_type = models.CharField(
         choices=TranslationType.choices, max_length=10, default=TranslationType.INCOME
     )
+
+    class Meta:
+        db_table = "payment_items_settings"
 
 
 class Roles(models.Model):
@@ -61,3 +76,6 @@ class Roles(models.Model):
     has_users = models.BooleanField(default=False)
     has_payment_details = models.BooleanField(default=False)
     job_title = models.CharField(choices=JobTitle.choices, max_length=20)
+
+    class Meta:
+        db_table = "roles"

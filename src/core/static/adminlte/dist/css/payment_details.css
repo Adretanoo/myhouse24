@@ -1,0 +1,39 @@
+.content {
+    min-height: 250px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.box {
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+}
+.nav-tabs-custom > .tab-content {
+  background: #fff;
+  padding: 10px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.form-group-buttons {
+    display: flex;
+    justify-content: end;
+    gap: .5rem;
+}
+label {
+    cursor: pointer;
+}
+@media  (max-width: 250px) {
+    .form-group-buttons {
+        display: block;
+        margin-left: 0;
+    }
+    .form-group-buttons > button {
+        margin-top: .3rem;
+    }
+}
