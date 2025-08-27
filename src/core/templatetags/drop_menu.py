@@ -1,7 +1,7 @@
 from django import template
 
 register = template.Library()
-urls_system = ["payment_details", "service_settings"]
+urls_system = ["payment_details", "service_settings", "roles"]
 
 
 @register.simple_tag(takes_context=True)

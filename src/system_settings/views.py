@@ -5,11 +5,14 @@ from src.system_settings.forms import (
     PaymentDetailsForm,
     ServiceSettingsFormSet,
     UnitsMeasurementFormSet,
+    RolesFormSet,
 )
 from src.system_settings.models import (
     PaymentDetailsSettings,
     UnitsMeasurement,
     ServiceSettings,
+    Roles,
+    JobTitle,
 )
 
 
@@ -50,3 +53,21 @@ class ServiceSettingsView(TemplateView):
             units_measurement.save()
 
         return redirect("service_settings")
+
+
+class RolesView(TemplateView):
+    template_name = "system_settings/roles.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["roles"] = RolesFormSet(queryset=Roles.objects.all())
+
+        for value, label in JobTitle.choices:
+            Roles.objects.get_or_create(job_title=value)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        roles = RolesFormSet(request.POST, queryset=Roles.objects.all())
+        if roles.is_valid():
+            roles.save()
+        return redirect("roles")

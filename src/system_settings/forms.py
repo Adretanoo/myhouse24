@@ -5,6 +5,7 @@ from src.system_settings.models import (
     PaymentDetailsSettings,
     UnitsMeasurement,
     ServiceSettings,
+    Roles,
 )
 
 
@@ -29,6 +30,13 @@ class PaymentDetailsForm(ModelForm):
             ),
         }
         labels = {"title": "Название компании", "information": "Информация"}
+
+
+class RolesForm(ModelForm):
+    class Meta:
+        model = Roles
+        fields = "__all__"
+        exclude = ["job_title"]
 
 
 class UnitsMeasurementForm(ModelForm):
@@ -60,6 +68,12 @@ class ServiceSettingsForm(ModelForm):
         }
 
 
+RolesFormSet = modelformset_factory(
+    Roles,
+    form=RolesForm,
+    extra=0,
+    can_delete=False,
+)
 UnitsMeasurementFormSet = modelformset_factory(
     UnitsMeasurement,
     form=UnitsMeasurementForm,
