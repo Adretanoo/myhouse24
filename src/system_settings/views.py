@@ -1,11 +1,18 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView, TemplateView
+from django.views.generic import (
+    UpdateView,
+    TemplateView,
+    ListView,
+    CreateView,
+    DeleteView,
+)
 from src.system_settings.forms import (
     PaymentDetailsForm,
     ServiceSettingsFormSet,
     UnitsMeasurementFormSet,
     RolesFormSet,
+    PaymentItemsSettingsForm,
 )
 from src.system_settings.models import (
     PaymentDetailsSettings,
@@ -13,6 +20,7 @@ from src.system_settings.models import (
     ServiceSettings,
     Roles,
     JobTitle,
+    PaymentItemsSettings,
 )
 
 
@@ -23,6 +31,30 @@ class PaymentDetailsView(UpdateView):
 
     def get_object(self, queryset=None):
         return PaymentDetailsSettings.objects.first()
+
+
+class PaymentItemsSettingsView(ListView):
+    template_name = "system_settings/payment_items/payment_items_table.html"
+    model = PaymentItemsSettings
+
+
+class PaymentItemsSettingsAddView(CreateView):
+    template_name = "system_settings/payment_items/payment_items_add.html"
+    form_class = PaymentItemsSettingsForm
+    success_url = reverse_lazy("payment_items")
+
+
+class PaymentItemsSettingsUpdateView(UpdateView):
+    model = PaymentItemsSettings
+    template_name = "system_settings/payment_items/payment_items_edit.html"
+    form_class = PaymentItemsSettingsForm
+    success_url = reverse_lazy("payment_items")
+
+
+class PaymentItemsSettingsDeleteView(DeleteView):
+    template_name = "system_settings/payment_items/payment_items_table.html"
+    model = PaymentItemsSettings
+    success_url = reverse_lazy("payment_items")
 
 
 class ServiceSettingsView(TemplateView):

@@ -1,0 +1,88 @@
+.content {
+    min-height: 250px;
+    padding: 15px !important;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.box {
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.box-body {
+    padding: 10px;
+}
+
+.table-responsive {
+    min-height: .01%;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    font-size: .9rem !important;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-bottom: 0px !important;
+}
+
+.table > thead > tr > th {
+    vertical-align: middle;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 1px solid #f4f4f4;
+}
+
+.table-bordered {
+    border: 1px solid #f4f4f4;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 1px solid #f4f4f4;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(244, 244, 244);
+    border-bottom-width: 1px;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: #f9f9f9;
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-right {
+    float: right !important;
+}
+#deleteForm {
+    display: none;
+}
+.dataTables_scrollBody {
+    overflow: visible !important;
+    height: auto !important;
+}
+.loading_tr {
+    display: none;
+}

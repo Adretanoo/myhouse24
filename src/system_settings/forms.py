@@ -6,6 +6,7 @@ from src.system_settings.models import (
     UnitsMeasurement,
     ServiceSettings,
     Roles,
+    PaymentItemsSettings,
 )
 
 
@@ -37,6 +38,26 @@ class RolesForm(ModelForm):
         model = Roles
         fields = "__all__"
         exclude = ["job_title"]
+
+
+class PaymentItemsSettingsForm(ModelForm):
+    class Meta:
+        model = PaymentItemsSettings
+        fields = ["title", "translation_type"]
+        widgets = {
+            "title": TextInput(
+                attrs={
+                    "class": "form-control",
+                    "required": "true",
+                }
+            ),
+            "translation_type": Select(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+        }
+        labels = {"title": "Название", "translation_type": " Приход/расход "}
 
 
 class UnitsMeasurementForm(ModelForm):

@@ -99,7 +99,7 @@
             </li>
         </ul>
     </li>
-    <li class="nav-item {% menu_active %}">
+    <li class="nav-item {% menu_active 'payment_items' 'payment_details' 'service_settings' 'roles' 'payment_items_add' 'payment_items_edit' %}">
         <a href="#" class="nav-link ">
             <i class="nav-icon bi bi-gear"></i>
             <p class="block-text">
@@ -133,8 +133,8 @@
                     <p>Платежные реквизиты</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {% link_active 'payment_items' %}">
+                <a href="{% url 'payment_items' %}" class="nav-link">
                     <p>Статьи платежей</p>
                 </a>
             </li>
