@@ -1,0 +1,13 @@
+{% extends "system_settings/tariff/tariff_settings_add.html" %}
+{% load static %}
+{% block head %}
+    <title>Тариф: {{ object.title }}</title>
+    <meta name="description" content="Тариф: {{ object.title }}">
+    <meta name="keywords" content="Тариф: {{ object.title }}">
+    <link href="{% static 'ajax_datatable/css/style.css' %}" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="{% static 'adminlte/dist/css/tariff_system_settings.css' %}">
+{% endblock head %}
+{% block title %}
+    <h1>Тариф: {{ object.title }}</h1>
+{% endblock title %}

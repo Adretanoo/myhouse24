@@ -27,7 +27,10 @@ class UnitsMeasurement(models.Model):
 class ServiceSettings(models.Model):
     title = models.CharField(max_length=255)
     units_measurement = models.ForeignKey(
-        UnitsMeasurement, on_delete=models.CASCADE, default=JobTitle.MANAGER
+        UnitsMeasurement,
+        on_delete=models.CASCADE,
+        default=1,
+        related_name="service_settings",
     )
     is_counters = models.BooleanField(default=False)
 
@@ -42,6 +45,16 @@ class TariffsSettings(models.Model):
 
     class Meta:
         db_table = "tariffs_settings"
+        ordering = ("-id",)
+
+
+class PriceTariffSettings(models.Model):
+    service = models.ForeignKey(ServiceSettings, on_delete=models.CASCADE, default=1)
+    tariff = models.ForeignKey(TariffsSettings, on_delete=models.CASCADE)
+    price = models.DecimalField(decimal_places=2, max_digits=10)
+
+    class Meta:
+        db_table = "price_tariff_settings"
 
 
 class PaymentDetailsSettings(models.Model):

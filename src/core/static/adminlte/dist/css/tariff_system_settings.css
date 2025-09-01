@@ -86,7 +86,31 @@ input[type="checkbox"] {
 .loading_tr {
     display: none;
 }
-thead > tr > th:nth-child(2){
+thead > tr > th:first-child{
     cursor: pointer;
     color: #20a0c6;
+}
+
+.block-delete-formset {
+    display: none;
+}
+.btn-remove-custom {
+    border-radius: 0 !important;
+}
+.form-row {
+    display: block;
+}
+
+.empty-form  {
+    display: none;
+}
+.errorlist {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+.errorlist > li {
+    color: #bc0000;
+    font-size: 1rem;
+    font-weight: bold;
 }

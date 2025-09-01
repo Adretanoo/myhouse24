@@ -7,6 +7,8 @@ from src.system_settings.models import (
     ServiceSettings,
     Roles,
     PaymentItemsSettings,
+    TariffsSettings,
+    PriceTariffSettings,
 )
 
 
@@ -89,6 +91,62 @@ class ServiceSettingsForm(ModelForm):
         }
 
 
+class TariffsSettingsForm(ModelForm):
+    class Meta:
+        model = TariffsSettings
+        fields = ["title", "description"]
+        widgets = {
+            "title": TextInput(
+                attrs={
+                    "class": "form-control",
+                    "required": "true",
+                }
+            ),
+            "description": Textarea(
+                attrs={
+                    "class": "form-control",
+                    "required": "true",
+                    "rows": "5",
+                }
+            ),
+        }
+        labels = {"title": "Название тарифа", "description": "Описание тарифа"}
+
+
+class PriceTariffSettingsForm(ModelForm):
+    class Meta:
+        model = PriceTariffSettings
+        fields = ["service", "price"]
+        widgets = {
+            "price": TextInput(
+                attrs={
+                    "class": "form-control",
+                    "required": "true",
+                    "value": "0.00",
+                }
+            ),
+            "service": Select(
+                attrs={
+                    "class": "form-control service-select",
+                }
+            ),
+        }
+        labels = {
+            "price": "Цена",
+            "service": "Услуга",
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["service"].label_from_instance = lambda obj: obj.title
+
+
+PriceTariffSettingsFormSet = modelformset_factory(
+    PriceTariffSettings,
+    form=PriceTariffSettingsForm,
+    extra=0,
+    can_delete=True,
+)
 RolesFormSet = modelformset_factory(
     Roles,
     form=RolesForm,

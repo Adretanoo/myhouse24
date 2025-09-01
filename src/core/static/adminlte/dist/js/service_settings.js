@@ -67,10 +67,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         totalFormsUnit.value = formIndex + 1;
     });
-
     containerUnit.addEventListener("click", function (event) {
         const removeBtn = event.target.closest(".form-row-remove-btn");
         if (!removeBtn) return;
+
+        if (removeBtn.classList.contains("disabled")) {
+            alert("Эта ед.изм. используется в услуге. Удаление невозможно.");
+            return;
+        }
 
         const formRow = removeBtn.closest(".form-serviceunit");
         if (!formRow) return;
@@ -85,5 +89,4 @@ document.addEventListener("DOMContentLoaded", function () {
             totalFormsUnit.value = parseInt(totalFormsUnit.value) - 1;
         }
     });
-
 });

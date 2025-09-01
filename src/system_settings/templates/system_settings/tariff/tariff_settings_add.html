@@ -1,0 +1,228 @@
+{% extends "base_adminlte.html" %}
+{% load static %}
+{% block head %}
+    <title>Новый тариф</title>
+    <meta name="description" content="Новый тариф">
+    <meta name="keywords" content="Новый тариф">
+    <link href="{% static 'ajax_datatable/css/style.css' %}" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="{% static 'adminlte/dist/css/tariff_system_settings.css' %}">
+{% endblock head %}
+{% block title %}
+    <h1>Новый тариф</h1>
+{% endblock title %}
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+{% block content %}
+    <div class="box">
+        <div class="box-body">
+            <form id="w0" action="" method="post">
+                {% csrf_token %}
+                {{ tariff_service.management_form }}
+                <div class="row">
+                    <div class="col-xs-12 col-lg-7">
+                        <div class="form-group field-transactionpurpose-name required">
+                            <label class="control-label" for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+                            {{ form.title }}
+                        </div>
+                        <div class="form-group field-transactionpurpose-type">
+                            <label class="control-label" for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+                            {{ form.description }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-lg-7">
+                        <div id="form-tariff_service-rows">
+                            {% for tariff_item in tariff_service %}
+                                {{ tariff_item.id }}
+                                <div id="form-tariff_service-{{ forloop.counter0 }}"
+                                     class="row tariff-service">
+                                    <div class="col-xs-6 col-md-4">
+                                        <div class="from-group">
+                                            <label for="{{ tariff_item.service.id_for_label }}">{{ tariff_item.service.label }}</label>
+                                            {{ tariff_item.service }}
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-md-3">
+                                        <label for="{{ tariff_item.price.id_for_label }}">{{ tariff_item.price.label }}</label>
+                                        {{ tariff_item.price }}
+                                    </div>
+                                    <div class="col-xs-6 col-md-2">
+                                        <div class="form-group">
+                                            <label for="0-currency-code">Валюта</label>
+                                            <input type="text"
+                                                   id="0-currency-code"
+                                                   class="form-control"
+                                                   name="currency_code"
+                                                   value="грн"
+                                                   disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-md-3">
+                                        <div class="form-group">
+                                            <label for="unit_form">Ед. изм.</label>
+                                            <div class="input-group">
+                                                <select id="unit_form" class="form-control unit-display" disabled>
+                                                    <option value="">Виберіть одиницю</option>
+                                                </select>
+                                                <span class="input-group-btn">
+                                                    <button type="button"
+                                                            class="btn btn-default form-row-remove-btn btn-remove-custom">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                    <span class="block-delete-formset">
+                                                        {% if tariff_item.DELETE %}{{ tariff_item.DELETE }}{% endif %}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ tariff_item.non_field_errors }}
+                                {{ tariff_item.service.errors }}
+                                {{ tariff_item.price.errors }}
+                            {% endfor %}
+                        </div>
+                        <button type="button"
+                                class="btn btn-default btn-hover-change pull-left margin-bottom-15 form-row-add-tariff_service-btn">
+                            Добавить услугу
+                        </button>
+                    </div>
+                    <div class="col-xs-12 col-lg-12 text-right">
+                        <div class="form-group">
+                            <button type="button" onclick="location.reload(true)" class="btn btn-default">Отменить</button>
+                            <button type="submit" class="btn btn-success">Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="empty-form form-row">
+        <div id="form-tariff_service-__prefix__" class="row tariff-service">
+            <div class="col-xs-6 col-md-4">
+                <div class="from-group">
+                    <label for="{{ tariff_service.empty_form.service.id_for_label }}">{{ tariff_service.empty_form.service.label }}</label>
+                    {{ tariff_service.empty_form.service }}
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <label for="{{ tariff_service.empty_form.price.id_for_label }}">{{ tariff_service.empty_form.price.label }}</label>
+                {{ tariff_service.empty_form.price }}
+            </div>
+            <div class="col-xs-6 col-md-2">
+                <div class="form-group">
+                    <label for="0-currency-code">Валюта</label>
+                    <input type="text"
+                           id="0-currency-code"
+                           class="form-control"
+                           name="currency_code"
+                           value="грн"
+                           disabled>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+                <div class="form-group">
+                    <label for="unit_form">Ед. изм.</label>
+                    <div class="input-group">
+                        <select id="unit_form" class="form-control unit-display" disabled>
+                            <option value="">Виберіть одиницю</option>
+                        </select>
+                        <span class="input-group-btn">
+                            <button type="button"
+                                    class="btn btn-default form-row-remove-btn btn-remove-custom">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                            <span class="block-delete-formset">
+                                {% if service_settings.empty_form.DELETE %}{{ service_settings.empty_form.DELETE }}{% endif %}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ tariff_item.non_field_errors }}
+        {{ tariff_item.service.errors }}
+        {{ tariff_item.price.errors }}
+    </div>
+{% endblock content %}
+{% block scripts %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const addBtn = document.querySelector(".form-row-add-tariff_service-btn");
+            const container = document.querySelector("#form-tariff_service-rows");
+            const totalForms = document.querySelector("#id_tariff_service-TOTAL_FORMS");
+            const emptyFormTemplate = document.querySelector(".empty-form .tariff-service");
+
+            const serviceUnitsMap = {};
+            const serviceData = {{ services_data_json|safe }};
+            serviceData.forEach(item => {
+                serviceUnitsMap[item.id] = item.units_measurement__title;
+            });
+
+            function update_unit(row) {
+                const select = row.querySelector(".service-select");
+                const unitSelect = row.querySelector(".unit-display");
+                if (!select || !unitSelect) return;
+
+                const selectedServiceId = select.value;
+                const unit = serviceUnitsMap[selectedServiceId] || "";
+
+                unitSelect.innerHTML = `<option value="${unit}">${unit}</option>`;
+            }
+
+            container.querySelectorAll(".tariff-service").forEach(row => {
+                update_unit(row);
+            });
+
+            addBtn.addEventListener("click", function () {
+                const formIndex = parseInt(totalForms.value);
+                const newForm = emptyFormTemplate.cloneNode(true);
+
+                newForm.querySelectorAll("input, select, textarea, label").forEach(el => {
+                    if (el.name) el.name = el.name.replace("__prefix__", formIndex);
+                    if (el.id) el.id = el.id.replace("__prefix__", formIndex);
+                    if (el.htmlFor) el.htmlFor = el.htmlFor.replace("__prefix__", formIndex);
+                });
+
+                newForm.id = `form-tariff_service-${formIndex}`;
+                container.appendChild(newForm);
+                totalForms.value = formIndex + 1;
+
+                update_unit(newForm);
+
+                const select = newForm.querySelector(".service-select");
+                if (select) {
+                    select.addEventListener("change", function () {
+                        update_unit(newForm);
+                    });
+                }
+            });
+
+            container.addEventListener("click", function (event) {
+                const removeBtn = event.target.closest(".form-row-remove-btn");
+                if (!removeBtn) return;
+
+                const formRow = removeBtn.closest(".tariff-service");
+                if (!formRow) return;
+
+                const deleteInput = formRow.querySelector('input[type="checkbox"][name$="-DELETE"]');
+                if (deleteInput) {
+                    deleteInput.checked = true;
+                    formRow.style.display = "none";
+                } else {
+                    formRow.remove();
+                    totalForms.value = parseInt(totalForms.value) - 1;
+                }
+            });
+
+            container.querySelectorAll(".service-select").forEach(select => {
+                select.addEventListener("change", function () {
+                    const row = select.closest(".tariff-service");
+                    update_unit(row);
+                });
+            });
+        });
+    </script>
+{% endblock scripts %}

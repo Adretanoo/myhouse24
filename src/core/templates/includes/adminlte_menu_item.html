@@ -99,7 +99,7 @@
             </li>
         </ul>
     </li>
-    <li class="nav-item {% menu_active 'payment_items' 'payment_details' 'service_settings' 'roles' 'payment_items_add' 'payment_items_edit' %}">
+    <li class="nav-item {% menu_active 'payment_items' 'payment_details' 'service_settings' 'roles' 'payment_items_add' 'payment_items_edit' 'tariffs' 'tariffs_add' 'tariffs_edit' 'tariffs_copy' %}">
         <a href="#" class="nav-link ">
             <i class="nav-icon bi bi-gear"></i>
             <p class="block-text">
@@ -113,8 +113,8 @@
                     <p>Услуги</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {% link_active 'tariffs' %}">
+                <a href="{% url 'tariffs' %}" class="nav-link">
                     <p>Тарифы</p>
                 </a>
             </li>

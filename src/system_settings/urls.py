@@ -1,6 +1,9 @@
 from django.urls import path
 from src.system_settings import views
-from src.system_settings.ajax_views import PaymentItemsAjaxDatatableView
+from src.system_settings.ajax_views import (
+    PaymentItemsAjaxDatatableView,
+    TariffsSettingsAjaxView,
+)
 from src.system_settings.views import PaymentItemsSettingsUpdateView
 
 urlpatterns = [
@@ -27,9 +30,31 @@ urlpatterns = [
         views.PaymentItemsSettingsDeleteView.as_view(),
         name="payment_items_delete",
     ),
+    path("tariffs/", views.TariffsSettingsView.as_view(), name="tariffs"),
+    path("tariffs/add/", views.TariffsSettingsAddView.as_view(), name="tariffs_add"),
+    path(
+        "tariffs/edit/<int:pk>/",
+        views.TariffsSettingsEditView.as_view(),
+        name="tariffs_edit",
+    ),
+    path(
+        "tariffs/delete/<int:pk>/",
+        views.TariffsSettingsDeleteView.as_view(),
+        name="tariffs_delete",
+    ),
+    path(
+        "tariffs/create/",
+        views.TariffsSettingsCopyCreateView.as_view(),
+        name="tariffs_copy",
+    ),
     path(
         "ajax_datatable/payment_items/",
         PaymentItemsAjaxDatatableView.as_view(),
         name="ajax_payment_items",
+    ),
+    path(
+        "ajax_datatable/tariffs//",
+        TariffsSettingsAjaxView.as_view(),
+        name="ajax_tariffs",
     ),
 ]

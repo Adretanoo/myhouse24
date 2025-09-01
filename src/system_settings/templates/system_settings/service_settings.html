@@ -83,7 +83,8 @@
                                                         <div class="input-group">
                                                             {{ unit.title }}
                                                             <span class="input-group-btn">
-                                                                <button type="button" class="btn btn-default form-row-remove-btn">
+                                                                <button type="button"
+                                                                        class="btn btn-default form-row-remove-btn {% if unit.instance.service_count > 0 %}disabled{% endif %}">
                                                                     <i class="fa fa-trash"></i>
                                                                 </button>
                                                                 <span class="block-delete-formset">

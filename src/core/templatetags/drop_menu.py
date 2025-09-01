@@ -1,12 +1,12 @@
 from django import template
 
-
 register = template.Library()
 
 urls_system = {
+    "service_settings": ["service_settings"],
+    "tariffs": ["tariffs", "tariffs_add", "tariffs_edit", "tariffs_copy"],
     "payment_items": ["payment_items", "payment_items_add", "payment_items_edit"],
     "payment_details": ["payment_details"],
-    "service_settings": ["service_settings"],
     "roles": ["roles"],
 }
 
