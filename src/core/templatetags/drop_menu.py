@@ -7,6 +7,7 @@ urls_system = {
     "tariffs": ["tariffs", "tariffs_add", "tariffs_edit", "tariffs_copy"],
     "payment_items": ["payment_items", "payment_items_add", "payment_items_edit"],
     "payment_details": ["payment_details"],
+    "users": ["users", "users_add", "users_edit"],
     "roles": ["roles"],
 }
 

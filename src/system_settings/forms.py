@@ -1,6 +1,8 @@
+from django import forms
+from django.contrib.auth.password_validation import validate_password
 from django.forms import ModelForm
 from django.forms.models import modelformset_factory
-from django.forms.widgets import TextInput, Textarea, Select
+from django.forms.widgets import TextInput, Textarea, Select, PasswordInput
 from src.system_settings.models import (
     PaymentDetailsSettings,
     UnitsMeasurement,
@@ -10,6 +12,7 @@ from src.system_settings.models import (
     TariffsSettings,
     PriceTariffSettings,
 )
+from src.users.models import User
 
 
 class PaymentDetailsForm(ModelForm):
@@ -139,6 +142,85 @@ class PriceTariffSettingsForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["service"].label_from_instance = lambda obj: obj.title
+
+
+class UserSettingsForm(ModelForm):
+    password = forms.CharField(
+        required=False,
+        label="Пароль",
+        widget=PasswordInput(attrs={"class": "form-control"}),
+    )
+    confirm_password = forms.CharField(
+        required=False,
+        label="Повторить пароль",
+        widget=PasswordInput(attrs={"class": "form-control"}),
+    )
+
+    class Meta:
+        model = User
+        fields = [
+            "first_name",
+            "last_name",
+            "email",
+            "phone_number",
+            "status",
+            "job_title",
+        ]
+        widgets = {
+            "first_name": TextInput(
+                attrs={"class": "form-control", "required": "true"}
+            ),
+            "email": TextInput(attrs={"class": "form-control", "required": "true"}),
+            "last_name": TextInput(attrs={"class": "form-control", "required": "true"}),
+            "phone_number": TextInput(
+                attrs={"class": "form-control", "required": "true"}
+            ),
+            "status": Select(attrs={"class": "form-control", "required": "true"}),
+            "job_title": Select(attrs={"class": "form-control", "required": "true"}),
+        }
+
+        labels = {
+            "first_name": "Имя",
+            "last_name": "Фамилия",
+            "phone_number": "Телефон",
+            "job_title": "Роль",
+            "status": "Статус",
+            "email": "Email (логин)",
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
+        is_create = self.instance.pk is None
+
+        if is_create:
+            if not password:
+                self.add_error(
+                    "password", "Пароль обязателен при создании пользователя"
+                )
+            elif password != confirm_password:
+                self.add_error("password", "Пароли не совпадают")
+            else:
+                validate_password(password)
+
+        else:
+            if password or confirm_password:
+                if password != confirm_password:
+                    self.add_error("password", "Пароли не совпадают")
+                else:
+                    validate_password(password)
+
+        return cleaned_data
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        password = self.cleaned_data.get("password")
+        if password:
+            user.set_password(password)
+        if commit:
+            user.save()
+        return user
 
 
 PriceTariffSettingsFormSet = modelformset_factory(

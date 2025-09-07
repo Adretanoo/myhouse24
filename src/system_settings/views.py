@@ -7,6 +7,8 @@ from django.views.generic import (
     CreateView,
     DeleteView,
 )
+
+from src.system_settings.filters import UsersSettingsFilter
 from src.system_settings.forms import (
     PaymentDetailsForm,
     ServiceSettingsFormSet,
@@ -15,6 +17,7 @@ from src.system_settings.forms import (
     PaymentItemsSettingsForm,
     TariffsSettingsForm,
     PriceTariffSettingsFormSet,
+    UserSettingsForm,
 )
 from src.system_settings.models import (
     PaymentDetailsSettings,
@@ -25,6 +28,7 @@ from src.system_settings.models import (
     TariffsSettings,
     PriceTariffSettings,
 )
+from src.users.models import User
 
 
 class PaymentDetailsView(UpdateView):
@@ -57,7 +61,7 @@ class TariffsSettingsAddView(CreateView):
         return context
 
     def post(self, request, *args, **kwargs):
-        form = self.get_form()  # основна форма TariffsSettingsForm
+        form = self.get_form()
         tariff_service = PriceTariffSettingsFormSet(
             data=request.POST, prefix="tariff_service"
         )
@@ -70,7 +74,6 @@ class TariffsSettingsAddView(CreateView):
                 instance.save()
             return redirect("tariffs")
         else:
-            # Повертаємо форму та formset із помилками
             return render(
                 request,
                 self.template_name,
@@ -281,3 +284,32 @@ class RolesView(ListView):
         if roles.is_valid():
             roles.save()
         return redirect("roles")
+
+
+class UsersSettingsView(ListView):
+    template_name = "system_settings/users/users_settings_table.html"
+    model = User
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["filters"] = UsersSettingsFilter()
+        return context
+
+
+class UsersSettingsAddView(CreateView):
+    model = User
+    template_name = "system_settings/users/users_settings_add.html"
+    success_url = reverse_lazy("users")
+    form_class = UserSettingsForm
+
+
+class UsersSettingsDelete(DeleteView):
+    model = User
+    success_url = reverse_lazy("users")
+
+
+class UsersSettingsUpdateView(UpdateView):
+    model = User
+    success_url = reverse_lazy("users")
+    template_name = "system_settings/users/users_settings_edit.html"
+    form_class = UserSettingsForm

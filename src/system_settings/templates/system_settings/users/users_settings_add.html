@@ -1,0 +1,91 @@
+{% extends "base_adminlte.html" %}
+{% load static %}
+{% block head %}
+    <title>Новый пользователь</title>
+    <meta name="description" content="Новый пользователь">
+    <meta name="keywords" content="Новый пользователь">
+    <link rel="stylesheet"
+          href="{% static 'adminlte/dist/css/users_settings.css' %}">
+{% endblock head %}
+{% block title %}
+    <h1>Новый пользователь</h1>
+{% endblock title %}
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+{% block content %}
+    <div class="box">
+        <div class="box-body">
+            <form action="" method="post" id="w0">
+                {% csrf_token %}
+                {{ form.management_form }}
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                            {{ form.first_name }}
+                            {{ form.first_name.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+                            {{ form.last_name }}
+                            {{ form.last_name.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="{{ form.phone_number.id_for_label }}">{{ form.phone_number.label }}</label>
+                            {{ form.phone_number }}
+                            {{ form.phone_number.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="{{ form.job_title.id_for_label }}">{{ form.job_title.label }}</label>
+                            {{ form.job_title }}
+                            {{ form.job_title.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="{{ form.status.id_for_label }}">{{ form.status.label }}</label>
+                            {{ form.status }}
+                            {{ form.status.errors }}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group required">
+                            <label class="control-label" for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                            {{ form.email }}
+                            {{ form.email.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                            <div class="input-group">
+                                {{ form.password }}
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default"
+                                            type="button"
+                                            onclick="generatePassword(['id_password', 'id_confirm_password'])">
+                                        Сгенерировать
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="showPass">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </span>
+                            </div>
+                            {{ form.password.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="{{ form.confirm_password.id_for_label }}">{{ form.confirm_password.label }}</label>
+                            {{ form.confirm_password }}
+                            {{ form.non_field_errors }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 text-right">
+                        <a href="{% url 'users_add' %}" class="btn btn-default">Отменить</a>
+                        <button type="submit" class="btn btn-success">Сохранить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+{% block scripts %}
+    <script src="{% static 'adminlte/dist/js/users_settings.js' %}" defer></script>
+{% endblock scripts %}

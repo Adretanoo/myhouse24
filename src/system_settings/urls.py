@@ -3,6 +3,7 @@ from src.system_settings import views
 from src.system_settings.ajax_views import (
     PaymentItemsAjaxDatatableView,
     TariffsSettingsAjaxView,
+    users_system_settings_data,
 )
 from src.system_settings.views import PaymentItemsSettingsUpdateView
 
@@ -52,9 +53,26 @@ urlpatterns = [
         PaymentItemsAjaxDatatableView.as_view(),
         name="ajax_payment_items",
     ),
+    path("users/", views.UsersSettingsView.as_view(), name="users"),
+    path("users/add/", views.UsersSettingsAddView.as_view(), name="users_add"),
+    path(
+        "users/delete/<int:pk>/",
+        views.UsersSettingsDelete.as_view(),
+        name="users_delete",
+    ),
     path(
         "ajax_datatable/tariffs//",
         TariffsSettingsAjaxView.as_view(),
         name="ajax_tariffs",
+    ),
+    path(
+        "users/edit/<int:pk>/",
+        views.UsersSettingsUpdateView.as_view(),
+        name="users_edit",
+    ),
+    path(
+        "ajax_datatable/users/",
+        users_system_settings_data,
+        name="ajax_users",
     ),
 ]

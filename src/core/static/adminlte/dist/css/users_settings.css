@@ -1,0 +1,198 @@
+.content {
+    min-height: 250px;
+    padding: 15px !important;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.box {
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.box-body {
+    padding: 10px;
+}
+
+.table-responsive {
+    min-height: .01%;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    font-size: .9rem !important;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-bottom: 0px !important;
+}
+
+.table > thead > tr > th {
+    vertical-align: middle;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 1px solid #f4f4f4;
+}
+
+.table-bordered {
+    border: 1px solid #f4f4f4;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 1px solid #f4f4f4;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(244, 244, 244);
+    border-bottom-width: 1px;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: #f9f9f9;
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+#deleteForm {
+    display: none;
+}
+
+.dataTables_scrollBody {
+    overflow: visible !important;
+    height: auto !important;
+}
+
+.loading_tr {
+    display: none;
+}
+
+.block-delete-formset {
+    display: none;
+}
+
+.btn-remove-custom {
+    border-radius: 0 !important;
+}
+
+.form-row {
+    display: block;
+}
+
+.empty-form {
+    display: none;
+}
+
+.errorlist {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.errorlist > li {
+    color: #bc0000;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#showPass, .btn-default {
+    border-radius: 0 !important;
+}
+
+.status-label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 80%;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: .25em;
+}
+
+.status-label[data-value="active"] {
+    background-color: #00a65a !important;
+}
+
+.status-label[data-value="new"] {
+    background-color: #f39c12 !important;
+}
+
+.status-label[data-value="inactive"] {
+    background-color: #dd4b39 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.box-header > .box-tools {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+.box-header {
+    color: #444;
+    display: block;
+    padding: 17px;
+    position: relative;
+}
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: .1em .6em;
+    margin-left: 0;
+    border-radius: 0;
+}
+
+.dataTables_paginate {
+    margin: .6rem;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    color: white !important;
+    border: 1px solid #428BCA !important;
+    background-color: #428BCA;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: #000000 !important;
+    border: 1px solid #eaeaea;
+    background-color: #eaeaea;
+    background: linear-gradient(to bottom, #e8e8e8 0%, #eaeaea 100%);
+    background-color: #eaeaea;
+}
+
+.paginate_button {
+    border: 1px solid #d1d1d1 !important;
+    background-color: white;
+}
+.dataTables_paginate .paginate_button:focus,
+.dataTables_paginate .paginate_button:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
