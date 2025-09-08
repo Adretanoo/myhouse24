@@ -20,6 +20,7 @@ class MainPage(models.Model):
     slide1 = models.ImageField(upload_to="slides1/", null=True, blank=True)
     slide2 = models.ImageField(upload_to="slides2/", null=True, blank=True)
     slide3 = models.ImageField(upload_to="slides3/", null=True, blank=True)
+    is_url_application = models.BooleanField(default=True)
     seo = models.OneToOneField(Seo, on_delete=models.CASCADE)
 
     class Meta:
