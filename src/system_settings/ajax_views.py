@@ -21,8 +21,8 @@ class PaymentItemsAjaxDatatableView(AjaxDatatableView):
             "name": "title",
             "title": "Название",
             "visible": True,
-            "orderable": True,
             "searchable": False,
+            "orderable": False,
         },
         {
             "name": "translation_type",
@@ -42,7 +42,7 @@ class PaymentItemsAjaxDatatableView(AjaxDatatableView):
         },
     ]
 
-    initial_order = [[0, "asc"]]
+    initial_order = [[1, "asc"]]
 
     def get_initial_queryset(self, request=None):
         return self.model.objects.all()
@@ -86,21 +86,26 @@ class TariffsSettingsAjaxView(AjaxDatatableView):
             "title": "Название тарифа",
             "visible": True,
             "searchable": False,
+            "orderable": True,
         },
         {
             "name": "description",
             "title": "Описание тарифа",
             "visible": True,
             "searchable": False,
+            "orderable": False,
         },
         {
             "name": "edit_date",
             "title": "Дата редактирования",
             "visible": True,
             "searchable": False,
+            "orderable": False,
         },
         {"name": "actions", "title": "", "visible": True, "searchable": False},
     ]
+
+    initial_order = [[0, "asc"]]
 
     def customize_row(self, row, obj):
         row["edit_date"] = f"{obj.edit_date:%d.%m.%Y - %H:%M}" if obj.edit_date else ""
