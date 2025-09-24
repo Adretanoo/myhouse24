@@ -9,6 +9,7 @@ urls_system = {
     "payment_details": ["payment_details"],
     "users": ["users", "users_add", "users_edit"],
     "roles": ["roles"],
+    "main_page": ["main_page"],
 }
 
 

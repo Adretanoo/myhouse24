@@ -126,13 +126,7 @@ class TariffsSettingsEditView(UpdateView):
             return render(
                 request,
                 self.template_name,
-                {
-                    "form": form,
-                    "tariff_service": tariff_service,
-                    "services_data_json": list(
-                        ServiceSettings.objects.values("id", "units_measurement__title")
-                    ),
-                },
+                self.get_context_data(form=form, tariff_service=tariff_service),
             )
 
 
@@ -234,6 +228,7 @@ class PaymentItemsSettingsDeleteView(DeleteView):
 
 class ServiceSettingsView(ListView):
     template_name = "system_settings/service_settings.html"
+    model = ServiceSettings
 
     def get_queryset(self):
         return UnitsMeasurement.objects.prefetch_related("service_settings").annotate(
@@ -242,16 +237,15 @@ class ServiceSettingsView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         service_qs = ServiceSettings.objects.select_related("units_measurement").all()
+
         context["service_settings"] = ServiceSettingsFormSet(
-            queryset=service_qs,
-            prefix="service_settings",
+            queryset=service_qs, prefix="service_settings"
         )
         context["units_measurement"] = UnitsMeasurementFormSet(
-            queryset=self.get_queryset(),
-            prefix="units_measurement",
+            queryset=self.get_queryset(), prefix="units_measurement"
         )
+
         return context
 
     def post(self, request, *args, **kwargs):

@@ -17,8 +17,16 @@ Including another URLconf
 
 from debug_toolbar.toolbar import debug_toolbar_urls
 from django.urls import path, include
+from django.conf.urls.static import static
+
+from config import settings
 
 urlpatterns = [
     path("adminlte/", include("src.services.urls")),
     path("adminlte/system-settings/", include("src.system_settings.urls")),
+    path("adminlte/website/", include("src.website.urls.adminlte")),
 ] + debug_toolbar_urls()
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

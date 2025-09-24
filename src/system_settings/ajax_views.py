@@ -144,7 +144,7 @@ def users_system_settings_data(request):
         if filter_form.cleaned_data.get("name"):
             qs = qs.filter(
                 Q(first_name__icontains=filter_form.cleaned_data["name"])
-                | Q(last_name__icontains=filter_form.cleaned_data["name"])
+                & Q(last_name__icontains=filter_form.cleaned_data["name"])
             )
         if filter_form.cleaned_data.get("email"):
             qs = qs.filter(email__icontains=filter_form.cleaned_data["email"])

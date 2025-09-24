@@ -75,23 +75,36 @@ class UnitsMeasurementForm(ModelForm):
         labels = {"title": "Ед. изм."}
 
 
+units_choices = list(UnitsMeasurement.objects.values_list("id", "title"))
+
+
 class ServiceSettingsForm(ModelForm):
+    units_measurement = forms.ChoiceField(
+        choices=units_choices,
+        widget=forms.Select(attrs={"class": "form-control"}),
+        label="Ед. изм.",
+    )
+
     class Meta:
         model = ServiceSettings
         fields = ["title", "units_measurement", "is_counters"]
         widgets = {
-            "title": TextInput(attrs={"class": "form-control", "required": "true"}),
-            "units_measurement": Select(
-                attrs={
-                    "class": "form-control",
-                }
+            "title": forms.TextInput(
+                attrs={"class": "form-control", "required": "true"}
             ),
         }
         labels = {
             "title": "Услуга",
             "is_counters": "Показывать в счетчиках",
-            "units_measurement": "Ед. изм.",
         }
+
+    def clean_units_measurement(self):
+        """перетворюємо id → UnitsMeasurement"""
+        unit_id = self.cleaned_data["units_measurement"]
+        try:
+            return UnitsMeasurement.objects.get(pk=unit_id)
+        except UnitsMeasurement.DoesNotExist:
+            raise forms.ValidationError("Неверная единица измерения")
 
 
 class TariffsSettingsForm(ModelForm):

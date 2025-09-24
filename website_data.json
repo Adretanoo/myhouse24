@@ -1,0 +1,84 @@
+[
+    {
+        "model": "website.seo",
+        "pk": 14,
+        "fields": {
+            "title": "x",
+            "description": "444",
+            "keywords": "123"
+        }
+    },
+    {
+        "model": "website.mainpage",
+        "pk": 27,
+        "fields": {
+            "title": "x123",
+            "description": "<b><i>dddsaf</i></b>",
+            "slide1": "slides1/smorfi.jpg",
+            "slide2": "slides2/optimus.jpg",
+            "slide3": "slides3/multiflex_kiviu_1.jpeg",
+            "is_url_application": true,
+            "seo": 14
+        }
+    },
+    {
+        "model": "website.mainpageblock",
+        "pk": 1,
+        "fields": {
+            "title": "111ii",
+            "description": "<b>dddd</b>",
+            "main_image": "main_page/Самурай_в_полосочку.jpg",
+            "main_page": 27
+        }
+    },
+    {
+        "model": "website.mainpageblock",
+        "pk": 2,
+        "fields": {
+            "title": "в",
+            "description": "в",
+            "main_image": "main_page/multuplex_uzhorod.jpeg",
+            "main_page": 27
+        }
+    },
+    {
+        "model": "website.mainpageblock",
+        "pk": 3,
+        "fields": {
+            "title": "d",
+            "description": "ds",
+            "main_image": "",
+            "main_page": 27
+        }
+    },
+    {
+        "model": "website.mainpageblock",
+        "pk": 4,
+        "fields": {
+            "title": "sdaf",
+            "description": "sdafsadf",
+            "main_image": "",
+            "main_page": 27
+        }
+    },
+    {
+        "model": "website.mainpageblock",
+        "pk": 5,
+        "fields": {
+            "title": "sdaf",
+            "description": "sadf",
+            "main_image": "",
+            "main_page": 27
+        }
+    },
+    {
+        "model": "website.mainpageblock",
+        "pk": 6,
+        "fields": {
+            "title": "safd",
+            "description": "sdfa",
+            "main_image": "",
+            "main_page": 27
+        }
+    }
+]

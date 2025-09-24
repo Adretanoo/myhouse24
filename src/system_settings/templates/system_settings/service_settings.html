@@ -44,7 +44,7 @@
                                                 </div>
                                                 <div class="col-xs-12 col-sm-5">
                                                     <div class="form-group">
-                                                        <label for="{{ service.units_measurement.id_for_label }}">{{ service.units_measurement.label }}</label>
+                                                        {{ service.units_measurement.label_tag }}
                                                         <div class="input-group">
                                                             {{ service.units_measurement }}
                                                             <span class="input-group-btn">
@@ -79,7 +79,7 @@
                                                  class="row form-serviceunit">
                                                 <div class="col-xs-12 col-sm-12">
                                                     <div class="form-group">
-                                                        <label for="{{ unit.for_id_label }}">{{ unit.title.label }}</label>
+                                                        <label for="{{ unit.id_for_label }}">{{ unit.title.label }}</label>
                                                         <div class="input-group">
                                                             {{ unit.title }}
                                                             <span class="input-group-btn">
@@ -157,7 +157,7 @@
         <div id="form-serviceunit-__prefix__" class="row form-serviceunit">
             <div class="col-xs-12 col-sm-12">
                 <div class="form-group">
-                    <label for="{{ units_measurement.empty_form.for_id_label }}">{{ units_measurement.empty_form.title.label }}</label>
+                    <label for="{{ units_measurement.empty_form.id_for_label }}">{{ units_measurement.empty_form.title.label }}</label>
                     <div class="input-group">
                         {{ units_measurement.empty_form.title }}
                         <span class="input-group-btn">
