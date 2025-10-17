@@ -10,6 +10,10 @@ urls_system = {
     "users": ["users", "users_add", "users_edit"],
     "roles": ["roles"],
     "main_page": ["main_page"],
+    "about_page": ["about_page"],
+    "contacts_page": ["contacts_page"],
+    "services_page": ["services_page"],
+    "tariff_page": ["tariff_page"],
 }
 
 

@@ -1,0 +1,137 @@
+{% extends "base_adminlte.html" %}
+{% load static %}
+{% block head %}
+    <title>Редактирование страницы</title>
+    <meta name="description" content="Редактирование страницы">
+    <meta name="keywords" content="Редактирование страницы">
+    <link rel="stylesheet"
+          href="{% static 'adminlte/dist/css/main_page.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'adminlte/dist/css/wysihtml5.menu.css' %}">
+{% endblock head %}
+{% block title %}
+    <h1>Редактирование страницы</h1>
+{% endblock title %}
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+{% block content %}
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Редактирование страницы "Контакты"</h3>
+        </div>
+        <div class="box-body">
+            <form id="contact-page-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-xs-12 col-md-8">
+                        <h3 class="page-header">Контактная информация</h3>
+                        <div class="form-group field-websitecontactform-contacttitle">
+                            {{ contacts.title.label_tag|cut:":" }}
+                            {{ contacts.title }}
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-websitecontactform-contactdescription">
+                            {{ contacts.description.label_tag|cut:":" }}
+                            {{ contacts.description }}
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-websitecontactform-contacturlsite">
+                            {{ contacts.link_site.label_tag|cut:":" }}
+                            {{ contacts.link_site }}
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-4">
+                        <h3 class="page-header">Контакты</h3>
+                        <div class="form-group field-websitecontactform-contactfullname">
+                            {{ contacts.fio.label_tag|cut:":" }}
+                            {{ contacts.fio }}
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-websitecontactform-contactlocation">
+                            {{ contacts.location.label_tag|cut:":" }}
+                            {{ contacts.location }}
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-websitecontactform-contactaddress">
+                            {{ contacts.address.label_tag|cut:":" }}
+                            {{ contacts.address }}
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-websitecontactform-contactphone">
+                            {{ contacts.phone.label_tag|cut:":" }}
+                            {{ contacts.phone }}
+                            {% if contacts.phone.errors %}
+                                <div class="text-danger">
+                                    {% for error in contacts.phone.errors %}<p>{{ error }}</p>{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group field-websitecontactform-contactemail">
+                            {{ contacts.email.label_tag|cut:":" }}
+                            {{ contacts.email }}
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-lg-12">
+                        <h3 class="page-header">Карта</h3>
+                        <div class="form-group field-websitecontactform-contactmapembedcode">
+                            {{ contacts.map.label_tag|cut:":" }}
+                            {{ contacts.map }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="page-header">Настройки SEO</h3>
+                        <div class="form-group">
+                            <label for="{{ seo.title.id_for_label }}">{{ seo.title.label }}</label>
+                            {{ seo.title }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ seo.description.id_for_label }}">{{ seo.description.label }}</label>
+                            {{ seo.description }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ seo.keywords.id_for_label }}">{{ seo.keywords.label }}</label>
+                            {{ seo.keywords }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-lg-12 text-center">
+                        <div class="form-group">
+                            <a href="{% url 'contacts_page' %}" class="btn btn-default">Отменить</a>
+                            <button id="submit-button" type="submit" class="btn btn-success">Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/jquery-1.7.2.min.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/prettify.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/bootstrap.min.js"></script>
+    <script src="{% static 'adminlte/dist/js/bootstrap-wysihtml5.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('textarea.wysihtml5').wysihtml5({
+                toolbar: {
+                    "font-styles": true,
+                    "emphasis": true,
+                    "lists": true,
+                    "html": true,
+                    "link": false,
+                    "image": false,
+                    "blockquote": true
+                },
+            });
+        });
+    </script>
+{% endblock scripts %}

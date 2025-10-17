@@ -25,6 +25,7 @@ urlpatterns = [
     path("adminlte/", include("src.services.urls")),
     path("adminlte/system-settings/", include("src.system_settings.urls")),
     path("adminlte/website/", include("src.website.urls.adminlte")),
+    path("", include("src.website.urls.website")),
 ] + debug_toolbar_urls()
 
 

@@ -1,10 +1,6 @@
 from django.db import models
 
 
-class Images(models.Model):
-    image = models.ImageField(upload_to="images/")
-
-
 class Seo(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -42,6 +38,7 @@ class AboutUsPage(models.Model):
     description = models.TextField()
     additional_title = models.CharField(max_length=200)
     additional_description = models.TextField()
+    photo_director = models.ImageField(upload_to="aboutus/", null=True, blank=True)
     seo = models.OneToOneField(Seo, on_delete=models.CASCADE)
 
     class Meta:
@@ -49,7 +46,7 @@ class AboutUsPage(models.Model):
 
 
 class AboutUsPageGallery(models.Model):
-    image = models.ForeignKey(Images, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="aboutus/gallery/")
     about_us_page = models.ForeignKey(AboutUsPage, on_delete=models.CASCADE)
 
     class Meta:
@@ -57,7 +54,7 @@ class AboutUsPageGallery(models.Model):
 
 
 class AboutUsPageAdditionalGallery(models.Model):
-    image = models.ForeignKey(Images, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="aboutus/gallery/additional/")
     about_us_page = models.ForeignKey(AboutUsPage, on_delete=models.CASCADE)
 
     class Meta:

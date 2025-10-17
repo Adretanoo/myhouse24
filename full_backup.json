@@ -1,0 +1,330 @@
+[
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "admin",
+            "model": "logentry"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "auth",
+            "model": "permission"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "auth",
+            "model": "group"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "contenttypes",
+            "model": "contenttype"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "sessions",
+            "model": "session"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "debug_toolbar",
+            "model": "historyentry"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "aboutuspage"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "images"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "mainpage"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "seo"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "aboutuspagedocuments"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "aboutuspagegallery"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "aboutuspageadditionalgallery"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "mainpageblock"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "contactspage"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "servicepage"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "servicecard"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "tariffspage"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "website",
+            "model": "tariffscard"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "system_settings",
+            "model": "paymentdetailssettings"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "system_settings",
+            "model": "paymentitemssettings"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "system_settings",
+            "model": "roles"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "system_settings",
+            "model": "servicesettings"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "system_settings",
+            "model": "tariffssettings"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "system_settings",
+            "model": "unitsmeasurement"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "system_settings",
+            "model": "pricetariffsettings"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "fields": {
+            "app_label": "users",
+            "model": "user"
+        }
+    },
+    {
+        "model": "website.seo",
+        "pk": 14,
+        "fields": {
+            "title": "x",
+            "description": "ddd",
+            "keywords": "123"
+        }
+    },
+    {
+        "model": "website.seo",
+        "pk": 15,
+        "fields": {
+            "title": "asdf",
+            "description": "sdfadsafdsafasdfasdfasd fasdf",
+            "keywords": "asfd"
+        }
+    },
+    {
+        "model": "website.seo",
+        "pk": 16,
+        "fields": {
+            "title": "11",
+            "description": "22",
+            "keywords": "22"
+        }
+    },
+    {
+        "model": "website.seo",
+        "pk": 17,
+        "fields": {
+            "title": "s",
+            "description": "1243іфвафіваasdfasdfasdf",
+            "keywords": "ddddsadfasdfasdfasdfasdf"
+        }
+    },
+    {
+        "model": "website.seo",
+        "pk": 18,
+        "fields": {
+            "title": "t",
+            "description": "d",
+            "keywords": "d"
+        }
+    },
+    {
+        "model": "website.seo",
+        "pk": 19,
+        "fields": {
+            "title": "dФФФФФФФФФФ",
+            "description": "ddd",
+            "keywords": "ddd"
+        }
+    },
+    {
+        "model": "website.mainpage",
+        "pk": 27,
+        "fields": {
+            "title": "x123",
+            "description": "<blockquote><blockquote><blockquote><blockquote><blockquote><ol><li><b><u>dddsaf</u></b></li></ol></blockquote></blockquote></blockquote></blockquote></blockquote>",
+            "slide1": "slides1/smorfi.jpg",
+            "slide2": "slides2/photo_2025-07-31_11-36-45.jpg",
+            "slide3": "slides3/multiflex_kiviu_1.jpeg",
+            "is_url_application": false,
+            "seo": 14
+        }
+    },
+    {
+        "model": "website.mainpageblock",
+        "pk": 1,
+        "fields": {
+            "title": "111ii",
+            "description": "<ol><li>dddd</li></ol>",
+            "main_image": "main_page/Самурай_в_полосочку.jpg",
+            "main_page": 27
+        }
+    },
+    {
+        "model": "website.mainpageblock",
+        "pk": 2,
+        "fields": {
+            "title": "в",
+            "description": "в",
+            "main_image": "main_page/multuplex_uzhorod.jpeg",
+            "main_page": 27
+        }
+    },
+    {
+        "model": "website.mainpageblock",
+        "pk": 3,
+        "fields": {
+            "title": "d",
+            "description": "ds",
+            "main_image": "main_page/vibor_home_cinema.jpg",
+            "main_page": 27
+        }
+    },
+    {
+        "model": "website.mainpageblock",
+        "pk": 4,
+        "fields": {
+            "title": "sdaf",
+            "description": "sdafsadf",
+            "main_image": "main_page/Самурай_в_полосочку_4q2dLZF.jpg",
+            "main_page": 27
+        }
+    },
+    {
+        "model": "website.mainpageblock",
+        "pk": 5,
+        "fields": {
+            "title": "sdaf",
+            "description": "sadf",
+            "main_image": "main_page/naked2-w.jpg",
+            "main_page": 27
+        }
+    },
+    {
+        "model": "website.mainpageblock",
+        "pk": 6,
+        "fields": {
+            "title": "safd",
+            "description": "sdfa",
+            "main_image": "",
+            "main_page": 27
+        }
+    },
+    {
+        "model": "website.aboutuspage",
+        "pk": 1,
+        "fields": {
+            "title": "іфвааааааddd",
+            "description": "<h1>adddіфва</h1>",
+            "additional_title": "ddd",
+            "additional_description": "dasdf",
+            "photo_director": "aboutus/mulit_flex_2.jpg",
+            "seo": 19
+        }
+    }
+]

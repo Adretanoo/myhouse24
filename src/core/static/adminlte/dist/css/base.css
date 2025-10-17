@@ -1,0 +1,39 @@
+.navbar-brand > img {
+    height: 40px;
+}
+
+footer img {
+    height: 24px;
+}
+
+.navbar-nav > li > a {
+    color: #606060;
+}
+
+.navbar-nav > li > a:hover {
+    color: #333;
+    background-color: transparent;
+}
+.navbar, .text-secondary  {
+    background-color: #fbfbfb;
+}
+
+html, body {
+    height: 100%;
+}
+
+.page-wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-content {
+    flex: 1; /* займає весь простір, штовхаючи футер вниз */
+}
+
+.slider img {
+  width: 100%;
+  height: 800px;
+  object-fit: cover;
+}

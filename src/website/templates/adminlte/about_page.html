@@ -1,0 +1,289 @@
+{% extends "base_adminlte.html" %}
+{% load static %}
+{% block head %}
+    <title>Редактирование страницы</title>
+    <meta name="description" content="Редактирование страницы">
+    <meta name="keywords" content="Редактирование страницы">
+    <link rel="stylesheet"
+          href="{% static 'adminlte/dist/css/about_page.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'adminlte/dist/css/wysihtml5.menu.css' %}">
+{% endblock head %}
+{% block title %}
+    <h1>Редактирование страницы</h1>
+{% endblock title %}
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+{% block content %}
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Редактирование страницы "О нас"</h3>
+        </div>
+        <div class="box-body">
+            <form id="about-page-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h3 class="page-header">Информация</h3>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group field-websiteaboutform-abouttitle">
+                            {{ about.title.label_tag|cut:":" }}
+                            {{ about.title }}
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-websiteaboutform-aboutdescription">
+                            {{ about.description.label_tag|cut:":" }}
+                            {{ about.description }}
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Фото директора</h4>
+                        {% if about.instance.photo_director %}
+                            <img width="250px"
+                                 height="310px"
+                                 src="{{ about.instance.photo_director.url }}"
+                                 alt="photo_director" />
+                        {% else %}
+                            <img width="250px"
+                                 height="310px"
+                                 class="photo-director-image"
+                                 src="https://placehold.co/250x310"
+                                 alt="photo_director" />
+                        {% endif %}
+                        <div class="form-group field-websiteaboutform-imagefile">
+                            {{ about.photo_director.label_tag|cut:":" }}
+                            {{ about.photo_director }}
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                {{ about_gallery.management_form }}
+                <div class="row site-about-gallery" id="about-gallery-forms">
+                    <div class="col-xs-12 col-lg-12">
+                        <h3 class="page-header">Фотогалерея</h3>
+                    </div>
+                    {% for apg in about_gallery %}
+                        <div class="col-xs-4 col-sm-2 text-center about_gallery"
+                             {% if not apg.instance.pk %}style="display:none"{% endif %}>
+                            {{ apg.id }}
+                            {% if apg.instance.image %}
+                                <img width="250"
+                                     height="150"
+                                     src="{{ apg.instance.image.url }}"
+                                     alt="image"
+                                     class="margin-bottom-15 img-thumbnail">
+                            {% else %}
+                                <img width="250"
+                                     height="150"
+                                     src="https://placehold.co/250x150"
+                                     alt="placeholder"
+                                     class="margin-bottom-15 img-thumbnail">
+                            {% endif %}
+                            <div class="form-group margin-bottom-15">
+                                {{ apg.DELETE }}
+                                <a href="#"
+                                   class="pull-right text-red remove-gallery"
+                                   data-confirm="Удалить?"><i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="col-xs-12 col-lg-12">
+                        <div class="form-group field-websiteaboutform-aboutimagemainfiles">
+                            <label class="control-label" for="aobut_page_gallery_label">
+                                Рекомендуемый размер:
+                                (1200x1200)
+                            </label>
+                            <br>
+                            {% for form in about_gallery.forms %}
+                                {% if not form.instance.pk %}{{ form.image }}{% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <h3 class="page-header">Дополнительная информация</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group field-websiteaboutform-abouttitle2">
+                            {{ about.additional_title.label_tag|cut:":" }}
+                            {{ about.additional_title }}
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-websiteaboutform-aboutdescription2">
+                            {{ about.additional_description.label_tag|cut:":" }}
+                            {{ about.additional_description }}
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                {{ about_additional_gallery.management_form }}
+                <div class="row site-about-gallery" id="about-additional-gallery-forms">
+                    <div class="col-xs-12 col-lg-12">
+                        <h3 class="page-header">Дополнительная фотогалерея</h3>
+                    </div>
+                    {% for apg in about_additional_gallery %}
+                        <div class="col-xs-4 col-sm-2 text-center about_additional_gallery"
+                             {% if not apg.instance.pk %}style="display:none"{% endif %}>
+                            {{ apg.id }}
+                            {% if apg.instance.image %}
+                                <img width="250"
+                                     height="150"
+                                     src="{{ apg.instance.image.url }}"
+                                     alt="image"
+                                     class="margin-bottom-15 img-thumbnail">
+                            {% else %}
+                                <img src="https://placehold.co/250x150"
+                                     width="250"
+                                     height="150"
+                                     alt="image"
+                                     class="img-thumbnail margin-bottom-15">
+                            {% endif %}
+                            <div class="form-group margin-bottom-15">
+                                {{ apg.DELETE }}
+                                <a href="#"
+                                   class="pull-right text-red remove-gallery-additional"
+                                   data-confirm="Удалить?"><i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="col-xs-12 col-lg-12">
+                        <div class="form-group field-websiteaboutform-aboutimagemainfiles">
+                            <label class="control-label" for="aobut_page_gallery_label">
+                                Рекомендуемый размер:
+                                (1200x1200)
+                            </label>
+                            <br>
+                            {% for form in about_additional_gallery.forms %}
+                                {% if not form.instance.pk %}{{ form.image }}{% endif %}
+                            {% endfor %}
+                            <div class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                {{ about_documents.management_form }}
+                <div class="row site-about-documents">
+                    <div class="col-xs-12 col-lg-12">
+                        <h3 class="page-header">Документы</h3>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div id="form-websitedocument-rows">
+                            {% for ad in about_documents %}
+                                {{ ad.id }}
+                                <div id="form-websitedocument-{{ forloop.counter0 }}"
+                                     class="form-websitedocument">
+                                    {{ ad.DELETE }}
+                                    {% if ".jpg" in ad.instance.file.name|lower %}
+                                        <div class="block-files-wrapper">
+                                            <div class="block-files-header">
+                                                <i class="bi bi-filetype-jpg"></i>
+                                                <div class="block-files-footer">
+                                                    {{ ad.file.label_tag|cut:":" }}
+                                                    {{ ad.file }}
+                                                </div>
+                                            </div>
+                                            <a href="#"
+                                               class="pull-right text-red remove-document"
+                                               data-confirm="Удалить?"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    {% else %}
+                                        <div class="block-files-wrapper">
+                                            <div class="block-files-header">
+                                                <i class="bi bi-file-earmark"></i>
+                                                <div class="block-files-footer">
+                                                    {{ ad.file.label_tag|cut:":" }}
+                                                    {{ ad.file }}
+                                                </div>
+                                            </div>
+                                            <a href="#"
+                                               class="pull-right text-red remove-document"
+                                               data-confirm="Удалить?"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    {% endif %}
+                                    <div class="form-group">
+                                        {{ ad.title.label_tag|cut:":" }}
+                                        {{ ad.title }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="btn-group">
+                            <button type="button"
+                                    class="btn btn-success margin-bottom-15 form-row-add-websitedocument-btn">
+                                Добавить документ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="page-header">Настройки SEO</h3>
+                        <div class="form-group">
+                            <label for="{{ seo.title.id_for_label }}">{{ seo.title.label }}</label>
+                            {{ seo.title }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ seo.description.id_for_label }}">{{ seo.description.label }}</label>
+                            {{ seo.description }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ seo.keywords.id_for_label }}">{{ seo.keywords.label }}</label>
+                            {{ seo.keywords }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-lg-12 text-center">
+                        <div class="form-group">
+                            <a href="{% url 'about_page' %}" class="btn btn-default">Отменить</a>
+                            <button id="submit-button" type="submit" class="btn btn-success">Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="empty-form" class="hidden">
+        <div class="form-websitedocument">
+            <div class="block-files-wrapper">
+                <div class="block-files-header">
+                    <i class="bi bi-file-earmark"></i>
+                    <div class="block-files-footer">
+                        {{ about_documents.empty_form.file.label_tag|cut:":" }}
+                        {{ about_documents.empty_form.file }}
+                    </div>
+                </div>
+                <a href="#"
+                   class="pull-right text-red delete-document-btn"
+                   data-confirm="Удалить?">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </div>
+            <div class="form-group">
+                {{ about_documents.empty_form.title.label_tag|cut:":" }}
+                {{ about_documents.empty_form.title }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/prettify.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/bootstrap.min.js"></script>
+    <script src="{% static 'adminlte/dist/js/bootstrap-wysihtml5.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('textarea.wysihtml5').wysihtml5({
+                toolbar: {
+                    "font-styles": true,
+                    "emphasis": true,
+                    "lists": true,
+                    "html": true,
+                    "link": false,
+                    "image": false,
+                    "blockquote": true
+                },
+            });
+        });
+    </script>
+    <script src="{% static 'adminlte/dist/js/about_page.js' %}" defer></script>
+{% endblock scripts %}

@@ -173,8 +173,8 @@
                 <div class="row">
                     <div class="col-xs-12 col-lg-12 text-center">
                         <div class="form-group">
-                            <a href="{% url 'main_page' %}" class="btn btn-default">Відмінити</a>
-                            <button id="submit-button" type="submit" class="btn btn-success">Зберегти</button>
+                            <a href="{% url 'main_page' %}" class="btn btn-default">Отменить</a>
+                            <button id="submit-button" type="submit" class="btn btn-success">Сохранить</button>
                         </div>
                     </div>
                 </div>
@@ -183,7 +183,6 @@
     </div>
 {% endblock content %}
 {% block scripts %}
-    <script src="{% static 'adminlte/dist/js/wysiwyg.js' %}" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
     <script src="https://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/jquery-1.7.2.min.js"></script>
@@ -204,7 +203,5 @@
                 },
             });
         });
-
-
     </script>
 {% endblock scripts %}

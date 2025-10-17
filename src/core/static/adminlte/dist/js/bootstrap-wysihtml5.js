@@ -91,7 +91,8 @@
                 "h1": {},
                 "h2": {},
                 "u": 1,
-                "blockquote": {"check_attributes": {"style": "any"}},
+                "blockquote": {},
+                "z": {"check_attributes": {"style": "any"}},
                 "img": {
                     "check_attributes": {
                         "width": "numbers",

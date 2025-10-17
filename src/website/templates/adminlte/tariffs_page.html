@@ -1,0 +1,161 @@
+{% extends "base_adminlte.html" %}
+{% load static %}
+{% block head %}
+    <title>Редактирование страницы</title>
+    <meta name="description" content="Редактирование страницы">
+    <meta name="keywords" content="Редактирование страницы">
+    <link rel="stylesheet"
+          href="{% static 'adminlte/dist/css/service_page.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'adminlte/dist/css/wysihtml5.menu.css' %}">
+{% endblock head %}
+{% block title %}
+    <h1>Редактирование страницы</h1>
+{% endblock title %}
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
+{% block content %}
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Редактирование страницы "Тарифы"</h3>
+        </div>
+        <div class="box-body">
+            <form id="service-page-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ tariff_cards.management_form }}
+                <h3 class="page-header">Информация</h3>
+                <div class="row">
+                    <div class="col-md-8 col-lg-8">
+                        <div class="form-group field-websitetariffform-tarifftitle">
+                            {{ tariff_page.title.label_tag|cut:":" }}
+                            {{ tariff_page.title }}
+                        </div>
+                        <div class="form-group field-websitetariffform-tariffdescription">
+                            {{ tariff_page.description.label_tag|cut:":" }}
+                            {{ tariff_page.description }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row near-img">
+                    <div class="col-xs-12 col-lg-12">
+                        <h3 class="page-header">Изображения</h3>
+                    </div>
+                    <div id="form-websitetariff-rows">
+                        {% for tariff_card in tariff_cards %}
+                            {{ tariff_card.id }}
+                            <div id="form-websitetariff-{{ forloop.counter0 }}"
+                                 class="col-lg-4 col-md-4 form-websitetariff">
+                                <div class="block-names">
+                                    <h4>Тариф {{ forloop.counter }}</h4>
+                                    <a href="#" class="remove-service text-red pull-right">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                    {{ tariff_card.DELETE }}
+                                </div>
+                                {% if tariff_card.instance.main_image %}
+                                    <img src="{{ tariff_card.instance.main_image.url }}"
+                                         alt="card"
+                                         height="300px"
+                                         width="650px">
+                                {% else %}
+                                    <img width="100%"
+                                         height="100%"
+                                         class="slide-image"
+                                         src="https://placehold.co/650x300"
+                                         alt="Slide">
+                                {% endif %}
+                                <div class="form-group">
+                                    {{ tariff_card.main_image.label_tag|cut:":" }}
+                                    {{ tariff_card.main_image }}
+                                </div>
+                                <div class="form-group">
+                                    {{ tariff_card.signature.label_tag|cut:":" }}
+                                    {{ tariff_card.signature }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="page-header">Настройки SEO</h3>
+                        <div class="form-group">
+                            <label for="{{ seo.title.id_for_label }}">{{ seo.title.label }}</label>
+                            {{ seo.title }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ seo.description.id_for_label }}">{{ seo.description.label }}</label>
+                            {{ seo.description }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ seo.keywords.id_for_label }}">{{ seo.keywords.label }}</label>
+                            {{ seo.keywords }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-lg-12 text-center">
+                        <div class="form-group">
+                            <a href="{% url 'tariffs_page' %}" class="btn btn-default">Отменить</a>
+                            <button type="button"
+                                    role="button"
+                                    class="btn btn-success bg-green-active form-row-add-websitetariffs-btn">
+                                Добавить
+                                тариф
+                            </button>
+                            <button id="submit-button" type="submit" class="btn btn-success">Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="empty-form" class="empty-formset hidden-form">
+        <div id="form-websitetariff-__prefix__"
+             class="col-lg-4 col-md-4 form-websitetariff">
+            <div class="block-names">
+                <h4>Тариф __display__</h4>
+                <a href="#" class="remove-service text-red pull-right">
+                    <i class="fa fa-trash"></i>
+                </a>
+                {% if tariff_cards.empty_form.can_delete %}{{ tariff_cards.empty_form.DELETE }}{% endif %}
+            </div>
+            <img width="100%"
+                 height="100%"
+                 class="slide-image"
+                 src="https://placehold.co/650x300"
+                 alt="Slide">
+            <div class="form-group">
+                {{ tariff_cards.empty_form.main_image.label_tag|cut:":" }}
+                {{ tariff_cards.empty_form.main_image }}
+            </div>
+            <div class="form-group">
+                {{ tariff_cards.empty_form.signature.label_tag|cut:":" }}
+                {{ tariff_cards.empty_form.signature }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/prettify.js"></script>
+    <script src="https://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/bootstrap.min.js"></script>
+    <script src="{% static 'adminlte/dist/js/bootstrap-wysihtml5.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('textarea.wysihtml5').wysihtml5({
+                toolbar: {
+                    "font-styles": true,
+                    "emphasis": true,
+                    "lists": true,
+                    "html": true,
+                    "link": false,
+                    "image": false,
+                    "blockquote": true
+                },
+            });
+        });
+    </script>
+    <script src="{% static 'adminlte/dist/js/tariffs_page.js' %}" defer></script>
+{% endblock scripts %}

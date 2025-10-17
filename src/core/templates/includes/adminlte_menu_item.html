@@ -63,7 +63,7 @@
             <p>Показания счетчиков</p>
         </a>
     </li>
-    <li class="nav-item {% menu_active 'main_page' %}">
+    <li class="nav-item {% menu_active 'main_page' 'about_page' 'contacts_page' 'services_page' 'tariffs_page' %}">
         <a href="#" class="nav-link">
             <i class="nav-icon bi bi-display"></i>
             <p class="block-text">
@@ -77,23 +77,23 @@
                     <p>Главная страница</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {% link_active 'about_page' %}">
+                <a href="{% url 'about_page' %}" class="nav-link">
                     <p>О нас</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {% link_active 'services_page' %}">
+                <a href="{% url 'services_page' %}" class="nav-link">
                     <p>Услуги</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {% link_active 'tariffs_page' %}">
+                <a href="{% url 'tariffs_page' %}" class="nav-link">
                     <p>Тарифы</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item {% link_active 'contacts_page' %}">
+                <a href="{% url 'contacts_page' %}" class="nav-link">
                     <p>Контакты</p>
                 </a>
             </li>
